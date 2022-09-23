@@ -1,0 +1,43 @@
+- Users
+id int
+name : varchar
+occupation: varchar
+email varchar
+password_hash varschar
+avatar_file name : varchar
+role : varchra
+token: varchar
+created at: datetime
+updated at : datetime
+
+- Campaigns
+id: int
+user id: int
+nane varchar
+short description : varchar
+description: text
+goal amount: int
+current anount: int
+perks text
+backer_count: int
+slug: varchar
+created_at : datetine
+updpted at datetine
+
+- Campaign Images
+id: int
+campaign_id: int
+file name : varchar
+is_pimary : boolean (tinyint)
+created at : datetime
+updated_at : datetime
+
+Transactions
+id: int
+campaign_id: int
+user id : int
+amount: int
+status: varchar
+code: varchar
+created_at datetime
+updated_at datetime
