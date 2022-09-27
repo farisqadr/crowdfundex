@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"crowdfundex/helper"
 	"crowdfundex/user"
 	"net/http"
 
@@ -28,7 +29,10 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, nil)
 	}
 
-	c.JSON(http.StatusOK, user)
+	response := helper.APIResponse("Account hasbeen registered!", http.StatusOK, "success", user)
+	// cara tracing
+	// fmt.Println("%v", response)
+	c.JSON(http.StatusOK, response)
 	//tangkap input dari user
 	//map input dari user ke struct RegistrationUserInput
 	//struct di atas ke parsing sebagai parameter
