@@ -1,9 +1,11 @@
 package main
 
 import (
+	"crowdfundex/handler"
 	"crowdfundex/user"
 	"log"
 
+	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -20,13 +22,22 @@ func main() {
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
 
-	userInput := user.RegistrationUserInput{}
-	userInput.Name = "Hawani Abdurrahman"
-	userInput.Email = "hawani@gmail.com"
-	userInput.Occupation = "CEO"
-	userInput.Password = "plain123"
+	userHandler := handler.NewUserHandler(userService)
 
-	userService.RegisterUser(userInput)
+	router := gin.Default()
+
+	api := router.Group("/api/v1")
+
+	api.POST("/users", userHandler.RegisterUser)
+
+	router.Run()
+	// userInput := user.RegistrationUserInput{}
+	// userInput.Name = "Hawani Abdurrahman"
+	// userInput.Email = "hawani@gmail.com"
+	// userInput.Occupation = "CEO"
+	// userInput.Password = "plain123"
+
+	// userService.RegisterUser(userInput)
 
 	// user := user.User{
 	// 	Name: "Dinda Realita",
