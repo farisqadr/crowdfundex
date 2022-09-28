@@ -3,6 +3,7 @@ package main
 import (
 	"crowdfundex/handler"
 	"crowdfundex/user"
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +22,18 @@ func main() {
 
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
+
+	userByEmail, err := userRepository.FindByEmail("thekaizar@gmail.com")
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	if userByEmail.ID == 0 {
+		fmt.Println("User tidak ditemukan!")
+	} else {
+		fmt.Println(userByEmail.Name)
+	}
 
 	userHandler := handler.NewUserHandler(userService)
 
