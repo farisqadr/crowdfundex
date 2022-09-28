@@ -3,7 +3,6 @@ package main
 import (
 	"crowdfundex/handler"
 	"crowdfundex/user"
-	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -23,21 +22,21 @@ func main() {
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
 
-	input := user.LoginUserInput{
-		Email:    "hawani@gmail.com",
-		Password: "plain123",
-	}
-	user, err := userService.LoginUser(input)
+	// input := user.LoginUserInput{
+	// 	Email:    "hawani@gmail.com",
+	// 	Password: "plain123",
+	// }
+	// user, err := userService.LoginUser(i  nput)
 
 	// userByEmail, err := userRepository.FindByEmail("thekaizar@gmail.com")
 
-	if err != nil {
-		fmt.Println("Terjadi kesalahan")
-		log.Fatal(err.Error())
-	}
+	// if err != nil {
+	// 	fmt.Println("Terjadi kesalahan")
+	// 	log.Fatal(err.Error())
+	// }
 
-	fmt.Println(user.Name)
-	fmt.Println(user.Occupation)
+	// fmt.Println(user.Name)
+	// fmt.Println(user.Occupation)
 
 	// if userByEmail.ID == 0 {
 	// 	fmt.Println("User tidak ditemukan!")
@@ -52,6 +51,7 @@ func main() {
 	api := router.Group("/api/v1")
 
 	api.POST("/users", userHandler.RegisterUser)
+	api.POST("/sessions", userHandler.Login)
 
 	router.Run()
 	// userInput := user.RegistrationUserInput{}
