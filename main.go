@@ -23,7 +23,8 @@ func main() {
 	userService := user.NewService(userRepository)
 	userHandler := handler.NewUserHandler(userService)
 
-	userService.SaveAvatar(1, "images/1-profile.png")
+	// test update file name avatar
+	// userService.SaveAvatar(1, "images/1-profile.png")
 
 	// input := user.LoginUserInput{
 	// 	Email:    "hawani@gmail.com",
@@ -55,6 +56,7 @@ func main() {
 	api.POST("/users", userHandler.RegisterUser)
 	api.POST("/sessions", userHandler.Login)
 	api.POST("/email_checkers", userHandler.CheckEmailAvailability)
+	api.POST("/avatars", userHandler.UploadAvatar)
 
 	router.Run()
 	// userInput := user.RegistrationUserInput{}
