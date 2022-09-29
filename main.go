@@ -21,6 +21,9 @@ func main() {
 
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
+	userHandler := handler.NewUserHandler(userService)
+
+	userService.SaveAvatar(1, "images/1-profile.png")
 
 	// input := user.LoginUserInput{
 	// 	Email:    "hawani@gmail.com",
@@ -44,8 +47,7 @@ func main() {
 	// 	fmt.Println(userByEmail.Name)
 	// }
 
-	userHandler := handler.NewUserHandler(userService)
-
+	// userHandler := handler.NewUserHandler(userService)
 	router := gin.Default()
 
 	api := router.Group("/api/v1")
