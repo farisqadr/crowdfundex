@@ -125,3 +125,13 @@ func (h *userHandler) CheckEmailAvailability(c *gin.Context) {
 	return
 
 }
+
+func (h *userHandler) UploadAvatar(c *gin.Context) {
+	//	input dari user
+	//
+	// sinpan gambarnya di folder "images/"
+	// di service kita panggil rep0
+	// JWT (sementara hardcode, seakan2 user yg login ID = 1)
+	// repo ambil data user yg ID 1
+	// repo update data user simpan lokasi file
+}
